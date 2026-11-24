@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="uk">
+<head><meta charset="utf-8"><title>Ремонт {{ repair.ticket }}</title></head>
+<body>
+<a href="{% url 'repair-list' %}">Журнал ремонтів</a>
+<h1>Ремонт {{ repair.ticket }}</h1>
+<p>{{ repair.problem }}</p>
+<p>{{ repair.bicycle.model_name }} · {{ repair.get_state_display }}</p>
+{% if repair.inspection %}
+<p>Огляд: {{ repair.inspection.duration_minutes }} хв.</p>
+{% if repair.inspection.note %}<p>{{ repair.inspection.note }}</p>{% endif %}
+{% endif %}
+<ul>{% for service in repair.services.all %}<li>{{ service.name }}</li>{% endfor %}</ul>
+</body>
+</html>

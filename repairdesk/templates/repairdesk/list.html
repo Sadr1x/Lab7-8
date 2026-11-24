@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="uk">
+<head><meta charset="utf-8"><title>Веломайстерня</title></head>
+<body>
+<h1>Журнал ремонтів</h1>
+<nav><a href="{% url 'staff-repairs' %}">Робочий журнал</a></nav>
+<form method="get">
+  <label for="query">Номер або опис несправності</label>
+  <input name="q" id="query" value="{{ query }}">
+  <button>Знайти</button>
+</form>
+<ul>
+{% for repair in repairs %}
+  <li><a href="{% url 'repair-detail' repair.pk %}">{{ repair.ticket }}</a>
+    · {{ repair.bicycle.model_name }} · {{ repair.get_state_display }}
+    {% for service in repair.services.all %} · {{ service.name }}{% endfor %}
+  </li>
+{% empty %}
+  <li>Ремонтів за цим запитом немає.</li>
+{% endfor %}
+</ul>
+</body>
+</html>

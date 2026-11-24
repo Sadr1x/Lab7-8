@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="uk">
+<head><meta charset="utf-8"><title>Вхід до журналу</title></head>
+<body>
+<h1>Вхід до журналу</h1>
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="hidden" name="next" value="{{ next }}">
+<button>Увійти</button>
+</form>
+</body>
+</html>
